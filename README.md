@@ -1,166 +1,179 @@
 # Photoshop-Export-Layers-to-Files-Fast
 
-This script allows you to export layers in your Photoshop document as individual files at a speed much faster than the built-in script from Adobe.
+此脚本允许您将 Photoshop 文档中的图层导出为独立文件，其速度远超 Adob​​e 内置脚本。
 
-This script does not try to achieve feature parity with the built-in script, but rather provide a more streamlined / performant experience. That being said, feel free to [make feature requests](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/issues/new), and feel free to contribute to it and make it even more powerful!
+此脚本并非试图实现与内置脚本相同的功能，而是提供更精简/更高效的体验。话虽如此，欢迎随时[提出功能请求](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/issues/new)，并随时为其做出贡献，使其更加强大！
 
-## Table of Contents
+## 目录
 
-- [How to Use](#how-to-use)
-- [Example Screenshot](#example-screenshot)
-- [Features](#features)
-- [Extra Field Documentation](#extra-field-documentation)
-- [Batch Processing / Actions](#batch-processing--actions)
-- [Requirements](#requirements)
-- [Contributing](#contributing)
-- [Feedback / Bugs](#feedback--bugs)
+- [如何使用](#how-to-use)
+- [示例截图](#example-screenshot)
+- [功能](#features)
+- [额外字段文档](#extra-field-documentation)
+- [批处理/操作](#batch-processing--actions)
+- [要求](#requirements)
+- [贡献](#contributing)
+- [反馈/错误](#feedback--bugs)
 
+## 如何使用
 
-## How to Use
+_免责声明：_我们与 Adob​​e 没有任何关联。如有任何与 Adob​​e 产品或 Adob​​e 脚本相关的问题，请直接联系 Adob​​e。我们从未遇到过问题，但**请自行承担使用此脚本的风险**。我们对任何数据丢失或 PSD 损坏概不负责，因此请务必备份。
 
-_Disclaimer:_ We are not associated with Adobe in any way. For any issues relating to Adobe products or Adobe scripts please contact them directly. We have never had an issue, but **please use this script at your own risk**. We are not responsible for any lost data or damaged PSDs so always make a back-up.
+- 前往 [发布页面](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases) 并下载 [最新版本](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases/latest)。
+- 在 Photoshop 中，前往“文件 -> 脚本 -> 浏览...”，然后选择“将图层导出到文件 (Fast).jsx”文件。
+- 注意：该脚本还需要“将图层导出到文件 (Fast)-progress_bar.json”文件才能运行。如果没有该文件，您将收到“进度条资源损坏”错误。请确保“.jsx”和“.json”文件位于同一目录中。
+- 您可以通过将所有脚本文件添加到“Photoshop > 预设 > 脚本”路径，将脚本添加到“脚本”菜单。
+- Windows：/Program Files/Adobe/Adobe Photoshop VERSION/Presets/Scripts
+- Mac：/Applications/Adobe Photoshop VERSION/Presets/Scripts
 
-- Go to the [releases page](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases) and download [the most recent release](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases/latest).
-- In Photoshop go to `File -> Scripts -> Browse...` and select the `Export Layers To Files (Fast).jsx` file.
-  - NOTE: The script needs the `Export Layers To Files (Fast)-progress_bar.json` file to run as well. Without this you will get a "Progress bar resource corrupt" error. Please ensure that the `.jsx` and the `.json` files are siblings in the same directory.
-- You can add the script to the Scripts menu by adding all of the script files to `Photoshop > Presets > Scripts`
-  - Windows: `/Program Files/Adobe/Adobe Photoshop VERSION/Presets/Scripts`
-  - Mac: `/Applications/Adobe Photoshop VERSION/Presets/Scripts`
+## 示例截图
 
-## Example Screenshot
+![脚本对话框截图](example-cn.png)
 
-![Screenshot of the script dialog](example.png)
+## 功能
 
-## Features
+该脚本的部分功能包括……
 
-Some of the features of the script include...
+- 支持的导出格式：
+- PNG（8 位和 24 位）
+- JPEG
+- TIFF
+- PDF
+- Targa
+- BMP
+- PSD
+- 处理分组图层中的嵌套
+- 导出所有图层或仅导出可见图层
+- 文件可以使用图层名称、图层 + 组名称或自动图层索引命名
+- 最低图层可视为通用背景
+- 导出的图像可以具有图层大小或画布大小（修剪选项）
+- 上次使用的对话框设置是已记住
+- 可以照常导出选定的组（逐层导出），同时保留其他所有内容。（这样可以为复杂的固定背景和前景导出可变内容。）
+- 可以将组导出为文件夹层次结构；冲突的文件夹将被重命名
 
-- Supported export formats:
-  - PNG (8 and 24 bit)
-  - JPEG
-  - TIFF
-  - PDF
-  - Targa
-  - BMP
-  - PSD
-- Handles nesting in grouped layers
-- Export either all layers or visible only
-- Files are named either using layer names, layer + group names, or automatic layer indices
-- Lowest layer can be treated as common background
-- Exported images can have layer size or canvas size (trimming option)
-- Last used dialog settings are remembered
-- A selected group can be exported as usual (layer by layer) while everything else is left in tact. (This way variable content can be exported for complex fixed background and foreground.)
-- Can export groups as folder hierarchy; conflicting folders are renamed
+## 附加字段文档
 
-## Extra Field Documentation
+### 选定的组
 
-### Selected Group
+仅导出选定的组。请注意，您必须在启动脚本之前选择该组，否则此选项将被禁用。以这种方式运行脚本时，所有其他图层将保持不变，这意味着导出结果中可能会显示顶部或底部可见的图层。
 
-Will only export the selected group. Note that you must selected the group before launching the script, otherwise this option will be disabled. When you run the script this way, all other layers will be left untouched, meaning any visible layers on top or bottom may show in the export.
+### 忽略以字母开头的图层
 
-### Ignore Layers Starting With
+选择此选项后，您可以指定用于匹配图层名称的前缀。导出过程中将忽略任何匹配的图层。
 
-When this is selected, you can specify a prefix that will be used to match against layer names. Any matching layers will be ignored during the export.
+例如，如果您在输入中指定“x”，则所有以字母“x”开头的图层都不会导出。
 
-For example, if you specify `x` in the input, all layers starting with the letter `x` will not be exported.
+### 文件名
 
-### Filenames
+| 选项 | 示例 |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `使用图层名称（去除扩展名）` | `layer-3.png` => `layer-3.png` |
+| `使用图层名称（保留扩展名）` | `layer-3.png` => `layer-3.png.png` |
+| `使用图层和父组名称` | `group 1 > layer-3` => `group-1-layer-3.png` |
+| `使用索引降序` | `layer-10`，其中 `layer-10` 是最顶层 => `01` |
+| `使用索引升序` | `layer-5`，其中 `layer-5` 是最顶层 => `5` |
 
-| Option                             | Example                                                    |
-| ---------------------------------- | ---------------------------------------------------------- |
-| `Use Layer Name (strip extension)` | `layer-3.png` => `layer-3.png`                             |
-| `Use Layer Name (keep extension)`  | `layer-3.png` => `layer-3.png.png`                         |
-| `Use layer and parent group names` | `group 1 > layer-3` => `group-1-layer-3.png`               |
-| `Use index descending`             | `layer-10`, where `layer-10` is the top-most layer => `01` |
-| `Use index ascending`              | `layer-5`, where `layer-5` is the top-most layer => `5`    |
+### 使用自定义分隔符
 
-### Use Custom Delimiter
+`使用自定义分隔符` 将启用自定义分隔符。自定义分隔符将用于代替图层名称和前缀/后缀字段中的空格。请注意，Photoshop 不支持在文件名中使用空格，因此，如果未指定自定义分隔符，则默认使用 `-` 分隔符。
 
-`Use Custom Delimiter` will enable the use of a custom delimiter. Custom delimiters will be used instead of spaces in layer names and in the prefix/suffix fields. Note that the use of a space inside the file name is not supported by Photoshop, so by default a `-` delimiter will be used if not custom delimiter is specified.
+例如：
+`my layer 1` 将导出为 `my-layer-1`
 
-For example:
-`my layer 1` will export as `my-layer-1`
+分隔符字段**不**支持以下字符：
+`\`、`/`、`*`、`?`、`|`、`.`、`:`、`"`、`<`、`>`、`%`、`,`、`;`、`=`
 
-The following characters are **not** supported in the delimiter field:
-`\`, `/`, `*`, `?`, `|`, `.`, `:`, `"`, `<`, `>`, `%`, `,`, `;`, `=`
+### 前缀/后缀
 
-### Prefix/Suffix
+`Prefix` 和 `Suffix` 将分别为每个导出的文件名添加前缀和后缀，并且与上面“文件名”中的所有选项兼容。
 
-`Prefix` and `Suffix` will add a prefix and suffix, respectively, to every exported filename, and is compatible with all the options in Filenames above.
+以下字符**不**支持# Photoshop-Export-Layers-to-Files-Fast
 
-The following characters are **not** supported in the prefix or suffix field:
-`\`, `/`, `*`, `?`, `|`, `:`, `"`, `<`, `>`
+此脚本允许您将 Photoshop 文档中的图层导出为独立文件，其速度远超 Adob​​e 内置脚本。
 
-| Prefix    | Suffix       | Output Example               |
-| --------- | ------------ | ---------------------------- |
-| `test-`   | N/A          | `test-layer-3.png`           |
-| N/A       | `.scale-100` | `layer-3.scale-100.png`      |
-| `test-`   | `.scale-100` | `test-layer-3.scale-100.png` |
-| `{ii}-`   | N/A          | `04-layer-3.png`             |
-| `{YYYY}-` | N/A          | `2021-layer-3.png`           |
+此脚本并非试图实现与内置脚本相同的功能，而是提供更精简/更高效的体验。话虽如此，欢迎随时[提出功能请求](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/issues/new)，并随时为其做出贡献，使其更加强大！
 
-#### Variable Substitution
+## 目录
 
-Prefix and Suffix fields can take the following string substitutes.
+- [如何使用](#how-to-use)
+- [示例截图](#example-screenshot)
+- [功能](#features)
+- [额外字段文档](#extra-field-documentation)
+- [批处理/操作](#batch-processing--actions)
+- [要求](#requirements)
+- [贡献](#contributing)
+- [反馈/错误](#feedback--bugs)
 
-| Option   | Example                                                                                  |
-| -------- | ---------------------------------------------------------------------------------------- |
-| `{i}`    | Will be replaced with the index of the layer                                             |
-| `{ii}`   | Will be replaced with the index of the layer, with a leading zero                        |
-| `{iii}`  | Will be replaced with the index of the layer, with up to two leading zeros               |
-| `{iiii}` | Will be replaced with the index of the layer, with up to three leading zeros             |
-| `{ln}`   | Will be replaced with the layer name. Useful for when exporting filenames as their index |
-| `{dn}`   | Will be replaced with the document name                                                  |
-| `{M}`    | Will be replaced with the month                                                          |
-| `{MM}`   | Will be replaced with the month, with a leading zero                                     |
-| `{D}`    | Will be replaced with the date of the month                                              |
-| `{DD}`   | Will be replaced with the date of the month, with a leading zero                         |
-| `{YY}`   | Will be replaced with the year, as the last two digits                                   |
-| `{YYYY}` | Will be replaced with the year, as all four digits                                       |
-| `{HH}`   | Will be replaced with the hours, with a leading zero                                     |
-| `{mm}`   | Will be replaced with the minutes, with a leading zero                                   |
-| `{ss}`   | Will be replaced with the seconds, with a leading zero                                   |
-| `{sss}`  | Will be replaced with the milliseconds, with leading zeros                               |
+## 如何使用
 
-### Known Gaps
+_免责声明：_我们与 Adob​​e 没有任何关联。如有任何与 Adob​​e 产品或 Adob​​e 脚本相关的问题，请直接联系 Adob​​e。我们从未遇到过问题，但**请自行承担使用此脚本的风险**。我们对任何数据丢失或 PSD 损坏概不负责，因此请务必备份。
 
-- Currently we do not support multiple artboards for export
+- 前往 [发布页面](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases) 并下载 [最新版本](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases/latest)。
+- 在 Photoshop 中，前往“文件 -> 脚本 -> 浏览...”，然后选择“将图层导出到文件 (Fast).jsx”文件。
+- 注意：该脚本还需要“将图层导出到文件 (Fast)-progress_bar.json”文件才能运行。如果没有该文件，您将收到“进度条资源损坏”错误。请确保“.jsx”和“.json”文件位于同一目录中。
+- 您可以通过将所有脚本文件添加到“Photoshop > 预设 > 脚本”路径，将脚本添加到“脚本”菜单。
+- Windows：/Program Files/Adobe/Adobe Photoshop VERSION/Presets/Scripts
+- Mac：/Applications/Adobe Photoshop VERSION/Presets/Scripts
 
-## Batch Processing / Actions
+## 示例截图
 
-Many people like to set up the script once, and then use batch processing or actions to automatically run the script.
+![脚本对话框截图](example-cn.png)
 
-To use the script this way, follow these instructions:
+## 功能
 
-1. Run the script, set your desired settings in the dialog and then hit "Save and Close"
-2. Open up the script file, in TextEdit (Mac), Notepad (Windows), or in a code IDE.
-3. At the top of the script, locate the code that reads `var BATCH_OPERATION = false;`
-4. Change this to say `var BATCH_OPERATION = true;`
-5. You can now rerun the script, and it will auto-run with the previous settings.
+该脚本的部分功能包括……
 
-In order to make changes to the settings again, you'll need to change `BATCH_OPERATION` back to `false` and rerun the script.
+- 支持的导出格式：
+- PNG（8 位和 24 位）
+- JPEG
+- TIFF
+- PDF
+- Targa
+- BMP
+- PSD
+- 处理分组图层中的嵌套
+- 导出所有图层或仅导出可见图层
+- 文件可以使用图层名称、图层 + 组名称或自动图层索引命名
+- 最低图层可视为通用背景
+- 导出的图像可以具有图层大小或画布大小（修剪选项）
+- 上次使用的对话框设置是已记住
+- 可以照常导出选定的组（逐层导出），同时保留其他所有内容。（这样可以为复杂的固定背景和前景导出可变内容。）
+- 可以将组导出为文件夹层次结构；冲突的文件夹将被重命名
 
+## 附加字段文档
 
-## Requirements
+### 选定的组
 
-We do our best to have the script be backwards compatible (back to Adobe Photoshop CS2) but are limited in what we can test for, both by Photoshop versions as well as OS. If you are encountering any issues with the current version, try downloading [previous versions](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/releases) of the script instead.
+仅导出选定的组。请注意，您必须在启动脚本之前选择该组，否则此选项将被禁用。以这种方式运行脚本时，所有其他图层将保持不变，这意味着导出结果中可能会显示顶部或底部可见的图层。
 
-## Contributing
+### 忽略以字母开头的图层
 
-Please feel free to contribute! We appreciate it!
+选择此选项后，您可以指定用于匹配图层名称的前缀。导出过程中将忽略任何匹配的图层。
 
-Here are some things to know:
+例如，如果您在输入中指定“x”，则所有以字母“x”开头的图层都不会导出。
 
-- When updating the dialog UI, please reference the `dev/dialog.js` and import it at https://scriptui.joonas.me/. Then, when you've made the appropriate UI changes, export the dialog and copy/paste the top comment block into the `dev/dialog.js` file and copy/paste the remainder into the `showDialog` function inside `Export Layers To Files (Fast).jsx`.
-- Be sure to test that any UI you add gets saved between script runs. i.e. If the user checks a checkbox, that checkbox should remain checked the next time they run the script.
+### 文件名
 
-## Feedback / Bugs
+| 选项 | 示例 |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `使用图层名称（去除扩展名）` | `layer-3.png` => `layer-3.png` |
+| `使用图层名称（保留扩展名）` | `layer-3.png` => `layer-3.png.png` |
+| `使用图层和父组名称` | `group 1 > layer-3` => `group-1-layer-3.png` |
+| `使用索引降序` | `layer-10`，其中 `layer-10` 是最顶层 => `01` |
+| `使用索引升序` | `layer-5`，其中 `layer-5` 是最顶层 => `5` |
 
-Please use GitHub to write feedback/bugs/suggestions by [filing an issue](https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast/issues).
+### 使用自定义分隔符
 
-If you encounter a bug, please include the following information:
+`使用自定义分隔符` 将启用自定义分隔符。自定义分隔符将用于代替图层名称和前缀/后缀字段中的空格。请注意，Photoshop 不支持在文件名中使用空格，因此，如果未指定自定义分隔符，则默认使用 `-` 分隔符。
 
-- Your OS and OS Version
-- Your Photoshop version and release number
-- A screenshot (if applicable)
-- A `.psd` that reproduces the issue (the simpler the better)
+例如：
+`my layer 1` 将导出为 `my-layer-1`
+
+分隔符字段**不**支持以下字符：
+`\`、`/`、`*`、`?`、`|`、`.`、`:`、`"`、`<`、`>`、`%`、`,`、`;`、`=`
+
+### 前缀/后缀
+
+`Prefix` 和 `Suffix` 将分别为每个导出的文件名添加前缀和后缀，并且与上面“文件名”中的所有选项兼容。
+
+以下字符**不**支持
