@@ -461,7 +461,7 @@ function main() {
     selectedLayerCount = layerCountResult.selectedLayerCount;
     var countDuration = profiler.getDuration(true, true);
     if (env.profiling) {
-        alert("²ãÊıÒÑ¼ÆÈë " + profiler.format(countDuration), "µ÷ÊÔĞÅÏ¢");
+        alert("å±‚æ•°å·²è®¡å…¥ " + profiler.format(countDuration), "è°ƒè¯•ä¿¡æ¯");
     }
 	
     // show dialog
@@ -479,7 +479,7 @@ function main() {
         }
         var collected = collectLayers(progressBarWindow);
         if (userCancelled) {
-            alert("µ¼³öÒÑÈ¡Ïû£¡Î´±£´æÈÎºÎÎÄ¼ş¡£", "ÒÑÍê³É", false);
+            alert("å¯¼å‡ºå·²å–æ¶ˆï¼æœªä¿å­˜ä»»ä½•æ–‡ä»¶ã€‚", "å·²å®Œæˆ", false);
             return "cancel";
         }
         layers = collected.layers;
@@ -488,7 +488,7 @@ function main() {
         groups = collected.groups;
         var collectionDuration = profiler.getDuration(true, true);
         if (env.profiling) {
-            alert("ÊÕ¼¯µÄ²ãÊı" + profiler.format(collectionDuration), "µ÷ÊÔĞÅÏ¢");
+            alert("æ”¶é›†çš„å±‚æ•°" + profiler.format(collectionDuration), "è°ƒè¯•ä¿¡æ¯");
         }
 
         // create unique folders
@@ -497,7 +497,7 @@ function main() {
         if (prefs.groupsAsFolders) {
             foldersOk = createUniqueFolders(prefs.exportLayerTarget);
             if (foldersOk !== true) {
-                alert(foldersOk + "Î´µ¼³öÍ¼²ã¡£", "Ê§°Ü", true);
+                alert(foldersOk + "æœªå¯¼å‡ºå›¾å±‚ã€‚", "å¤±è´¥", true);
             }
         }
 
@@ -510,17 +510,17 @@ function main() {
 
             var message = "";
             if (userCancelled) {
-                message += "µ¼³öÒÑÈ¡Ïû£¡\n\n";
+                message += "å¯¼å‡ºå·²å–æ¶ˆï¼\n\n";
             }
-            message += "ÒÑ±£´æ " + count.count + " ¸öÎÄ¼ş¡£.";
+            message += "å·²ä¿å­˜ " + count.count + " ä¸ªæ–‡ä»¶ã€‚.";
             if (env.profiling) {
-                message += "\n\nnµ¼³öº¯ÊıÖ´ĞĞºÄÊ± " + profiler.format(collectionDuration) + " + " + profiler.format(exportDuration) + "";
+                message += "\n\nnå¯¼å‡ºå‡½æ•°æ‰§è¡Œè€—æ—¶ " + profiler.format(collectionDuration) + " + " + profiler.format(exportDuration) + "";
             }
             if (count.error) {
-                message += "\n\n²¿·ÖÍ¼²ãµ¼³öÊ§°Ü£¡£¨ÊÇ·ñÓĞ¶à¸öÍ¬ÃûÍ¼²ã£¿£©";
+                message += "\n\néƒ¨åˆ†å›¾å±‚å¯¼å‡ºå¤±è´¥ï¼ï¼ˆæ˜¯å¦æœ‰å¤šä¸ªåŒåå›¾å±‚ï¼Ÿï¼‰";
             }
             if(!prefs.silent && !BATCH_OPERATION) {
-                alert(message, "Íê³É", count.error);
+                alert(message, "å®Œæˆ", count.error);
             }
         }
 
@@ -617,7 +617,7 @@ function exportLayers(exportLayerTarget, progressBarWindow) {
         }
 
         if (progressBarWindow) {
-            showProgressBar(progressBarWindow, "ÕıÔÚµ¼³ö 1 / " + count + "...", count);
+            showProgressBar(progressBarWindow, "æ­£åœ¨å¯¼å‡º 1 / " + count + "...", count);
         }
 
         // Turn off all layers when exporting all layers - even seemingly invisible ones.
@@ -720,7 +720,7 @@ function exportLayers(exportLayerTarget, progressBarWindow) {
             }
 
             if (progressBarWindow) {
-                updateProgressBar(progressBarWindow, "ÕıÔÚµ¼³ö " + (i + 1) + " / " + count + "...");
+                updateProgressBar(progressBarWindow, "æ­£åœ¨å¯¼å‡º " + (i + 1) + " / " + count + "...");
                 repaintProgressBar(progressBarWindow);
                 if (userCancelled) {
                     break;
@@ -1111,7 +1111,7 @@ function finalizeSettingsPrerun() {
 
 function createProgressBar() {
     // read progress bar resource
-    var rsrcFile = new File(env.scriptFileDirectory + "/" + encodeURI("Export Layers To Files (Fast)-progress_bar-chinese.json"));
+    var rsrcFile = new File(env.scriptFileDirectory + "/" + encodeURI("Export Layers To Files (Fast)-progress_bar-cn.json"));
     var rsrcString = loadResource(rsrcFile);
     if (!rsrcString) {
         return false;
@@ -1122,7 +1122,7 @@ function createProgressBar() {
     try {
         win = new Window(rsrcString);
     } catch (e) {
-        alert("½ø¶ÈÌõ×ÊÔ´ÒÑËğ»µ£¡ÇëÖØĞÂÏÂÔØ°üº¬ËùÓĞÎÄ¼şµÄ½Å±¾¡£", "Error", true);
+        alert("è¿›åº¦æ¡èµ„æºå·²æŸåï¼è¯·é‡æ–°ä¸‹è½½åŒ…å«æ‰€æœ‰æ–‡ä»¶çš„è„šæœ¬ã€‚", "Error", true);
         return false;
     }
 
@@ -1179,7 +1179,7 @@ function showDialog() {
     try {
         dialog = makeMainDialog();
     } catch (e) {
-        alert("´ò¿ª¶Ô»°¿òÊ±³ö´í£¡ÇëÌá½»ÎÊÌâ²¢³¢ÊÔ¾É°æ±¾¡£", "´íÎó", true);
+        alert("æ‰“å¼€å¯¹è¯æ¡†æ—¶å‡ºé”™ï¼è¯·æäº¤é—®é¢˜å¹¶å°è¯•æ—§ç‰ˆæœ¬ã€‚", "é”™è¯¯", true);
         return false;
     }
 
@@ -1190,7 +1190,7 @@ function showDialog() {
     // ===================
     fields.txtDestination.text = prefs.destination;
     fields.btnBrowse.onClick = function() {
-        var newFilePath = Folder.selectDialog("Ñ¡ÔñÄ¿±êÎÄ¼ş¼Ğ", prefs.destination);
+        var newFilePath = Folder.selectDialog("é€‰æ‹©ç›®æ ‡æ–‡ä»¶å¤¹", prefs.destination);
         if (newFilePath) {
             fields.txtDestination.text = newFilePath.fsName;
         }
@@ -1813,7 +1813,7 @@ function getSettings(formatOpts) {
 
 function bootstrap() {
     function showError(err) {
-        alert(err + ':ÔÚ ' + err.line + ' ĞĞ', '½Å±¾´íÎó', true);
+        alert(err + ':åœ¨ ' + err.line + ' è¡Œ', 'è„šæœ¬é”™è¯¯', true);
     }
 
     // initialisation of class methods
@@ -1838,7 +1838,7 @@ function bootstrap() {
         env.version = parseInt(app.version, 10);
 
         if (env.version < 9) {
-            alert("CS2 Ö®Ç°µÄ Photoshop °æ±¾²»ÊÜÖ§³Ö£¡", "Error", true);
+            alert("CS2 ä¹‹å‰çš„ Photoshop ç‰ˆæœ¬ä¸å—æ”¯æŒï¼", "Error", true);
             return "cancel";
         }
 
@@ -1926,7 +1926,7 @@ function collectLayersAM(progressBarWindow) {
 
         if (progressBarWindow) {
             // The layer count is actually + 1 if there's a background present, but it should be no biggie.
-            showProgressBar(progressBarWindow, "ÊÕ¼¯Í¼²ã...¿ÉÄÜĞèÒª¼¸ÃëÖÓ¡£", (layerCount + FEW_LAYERS) / FEW_LAYERS);
+            showProgressBar(progressBarWindow, "æ”¶é›†å›¾å±‚...å¯èƒ½éœ€è¦å‡ ç§’é’Ÿã€‚", (layerCount + FEW_LAYERS) / FEW_LAYERS);
         }
 
         // Query current selection.
@@ -2088,7 +2088,7 @@ function countLayersAM(progressBarWindow) {
 
         if (progressBarWindow) {
             // The layer count is actually + 1 if there's a background present, but it should be no biggie.
-            showProgressBar(progressBarWindow, "¼ÆËã²ãÊı...¿ÉÄÜĞèÒª¼¸ÃëÖÓ¡£", (layerCount + FEW_LAYERS) / FEW_LAYERS);
+            showProgressBar(progressBarWindow, "è®¡ç®—å±‚æ•°...å¯èƒ½éœ€è¦å‡ ç§’é’Ÿã€‚", (layerCount + FEW_LAYERS) / FEW_LAYERS);
         }
 
         try {
@@ -2409,7 +2409,7 @@ function indexOf(array, element) {
 function loadResource(file) {
     var rsrcString;
     if (!file.exists) {
-        alert("µ¼³ö¶Ô»°¿òµÄ×ÊÔ´ÎÄ¼ş¡® '" + file.name + "' ¶ªÊ§£¡ÇëÏÂÔØ´Ë½Å±¾¸½´øµÄÆäÓàÎÄ¼ş¡£", "´íÎó", true);
+        alert("å¯¼å‡ºå¯¹è¯æ¡†çš„èµ„æºæ–‡ä»¶â€˜ '" + file.name + "' ä¸¢å¤±ï¼è¯·ä¸‹è½½æ­¤è„šæœ¬é™„å¸¦çš„å…¶ä½™æ–‡ä»¶ã€‚", "é”™è¯¯", true);
         return false;
     }
     try {
@@ -2421,7 +2421,7 @@ function loadResource(file) {
             throw file.error;
         }
     } catch (error) {
-        alert("ÎŞ·¨¶ÁÈ¡×ÊÔ´ÎÄ¼ş '" + file.name + "'!\n\nÔ­Òò: " + error + "\n\nÇë¼ì²éËüÊÇ·ñ¿É¹©¶ÁÈ¡£¬Èç¹ûÎÄ¼şËğ»µ£¬ÇëÖØĞÂÏÂÔØ¡£", "´íÎó", true);
+        alert("æ— æ³•è¯»å–èµ„æºæ–‡ä»¶ '" + file.name + "'!\n\nåŸå› : " + error + "\n\nè¯·æ£€æŸ¥å®ƒæ˜¯å¦å¯ä¾›è¯»å–ï¼Œå¦‚æœæ–‡ä»¶æŸåï¼Œè¯·é‡æ–°ä¸‹è½½ã€‚", "é”™è¯¯", true);
         return false;
     }
 	
@@ -2598,7 +2598,7 @@ function makeMainDialog() {
     // PNLDESTINATION
     // ==============
     var pnlDestination = grpCol1.add("panel", undefined, undefined, {name: "pnlDestination"}); 
-    pnlDestination.text = "Êä³ö"; 
+    pnlDestination.text = "è¾“å‡º"; 
     pnlDestination.orientation = "row"; 
     pnlDestination.alignChildren = ["left","center"]; 
     pnlDestination.spacing = 10; 
@@ -2607,17 +2607,17 @@ function makeMainDialog() {
 
     var txtDestination = pnlDestination.add('edittext {properties: {name: "txtDestination"}}'); 
     //txtDestination.helpTip = "Where to save the files"; 
-    txtDestination.helpTip = "¹È¸è·­Òë£ºÎÄ¼şµÄ±£´æÎ»ÖÃ"; 
+    txtDestination.helpTip = "è°·æ­Œç¿»è¯‘ï¼šæ–‡ä»¶çš„ä¿å­˜ä½ç½®"; 
     txtDestination.preferredSize.width = 200; 
 
     var btnBrowse = pnlDestination.add("button", undefined, undefined, {name: "btnBrowse"}); 
-    btnBrowse.text = "ä¯ÀÀ..."; 
+    btnBrowse.text = "æµè§ˆ..."; 
     btnBrowse.justify = "left"; 
 
     // PNLEXPORT
     // =========
     var pnlExport = grpCol1.add("panel", undefined, undefined, {name: "pnlExport"}); 
-    pnlExport.text = "µ¼³ö"; 
+    pnlExport.text = "å¯¼å‡º"; 
     pnlExport.orientation = "column"; 
     pnlExport.alignChildren = ["left","top"]; 
     pnlExport.spacing = 11; 
@@ -2634,14 +2634,14 @@ function makeMainDialog() {
 
     var radioAll = grpExport.add("radiobutton", undefined, undefined, {name: "radioAll"}); 
     //radioAll.helpTip = "Exports all layers"; 
-    radioAll.helpTip = "¹È¸è·­Òë£ºµ¼³öËùÓĞÍ¼²ã"; 
-    radioAll.text = "ËùÓĞÍ¼²ã"; 
+    radioAll.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¯¼å‡ºæ‰€æœ‰å›¾å±‚"; 
+    radioAll.text = "æ‰€æœ‰å›¾å±‚"; 
     radioAll.value = true; 
 
     var radioSelected = grpExport.add("radiobutton", undefined, undefined, {name: "radioSelected"}); 
     //radioSelected.helpTip = "Only exports selected group. Must select a group to be enabled."; 
-    radioSelected.helpTip = "¹È¸è·­Òë£º½öµ¼³öÑ¡¶¨µÄ×é¡£±ØĞëÑ¡ÔñÒ»¸ö×é²ÅÄÜÆôÓÃ¡£"; 
-    radioSelected.text = "Ñ¡Ôñ×é"; 
+    radioSelected.helpTip = "è°·æ­Œç¿»è¯‘ï¼šä»…å¯¼å‡ºé€‰å®šçš„ç»„ã€‚å¿…é¡»é€‰æ‹©ä¸€ä¸ªç»„æ‰èƒ½å¯ç”¨ã€‚"; 
+    radioSelected.text = "é€‰æ‹©ç»„"; 
 
     // GRPIGNORE
     // =========
@@ -2653,8 +2653,8 @@ function makeMainDialog() {
 
     var cbVisibleOnly = grpIgnore.add("checkbox", undefined, undefined, {name: "cbVisibleOnly"}); 
     //cbVisibleOnly.helpTip = "Whether to export only visible layers"; 
-    cbVisibleOnly.helpTip = "¹È¸è·­Òë£ºÊÇ·ñ½öµ¼³ö¿É¼ûÍ¼²ã"; 
-    cbVisibleOnly.text = "½ö¿É¼û"; 
+    cbVisibleOnly.helpTip = "è°·æ­Œç¿»è¯‘ï¼šæ˜¯å¦ä»…å¯¼å‡ºå¯è§å›¾å±‚"; 
+    cbVisibleOnly.text = "ä»…å¯è§"; 
 
     // GRPIGNOREPREFIX
     // ===============
@@ -2666,26 +2666,26 @@ function makeMainDialog() {
 
     var cbIgnorePrefix = grpIgnorePrefix.add("checkbox", undefined, undefined, {name: "cbIgnorePrefix"}); 
     //cbIgnorePrefix.helpTip = "Ignore layers starting with"; 
-    cbIgnorePrefix.helpTip = "¹È¸è·­Òë£ººöÂÔÒÔ...¿ªÍ·µÄ²ã"; 
-    cbIgnorePrefix.text = "ºöÂÔÒÔ¡°...¡±¿ªÍ·µÄ²ã£¨Èç£º!£©"; 
+    cbIgnorePrefix.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¿½ç•¥ä»¥...å¼€å¤´çš„å±‚"; 
+    cbIgnorePrefix.text = "å¿½ç•¥ä»¥â€œ...â€å¼€å¤´çš„å±‚ï¼ˆå¦‚ï¼š!ï¼‰"; 
 
     var txtIgnorePrefix = grpIgnorePrefix.add('edittext {properties: {name: "txtIgnorePrefix"}}'); 
     //txtIgnorePrefix.helpTip = "The prefix to match against"; 
-    txtIgnorePrefix.helpTip = "¹È¸è·­Òë£ºÒªÆ¥ÅäµÄÇ°×º"; 
+    txtIgnorePrefix.helpTip = "è°·æ­Œç¿»è¯‘ï¼šè¦åŒ¹é…çš„å‰ç¼€"; 
     txtIgnorePrefix.text = "!"; 
     txtIgnorePrefix.preferredSize.width = 31; 
 
     // PNLNAMEFILES
     // ============
     var pnlNameFiles = grpCol1.add("panel", undefined, undefined, {name: "pnlNameFiles"}); 
-    pnlNameFiles.text = "ÎÄ¼şÃû"; 
+    pnlNameFiles.text = "æ–‡ä»¶å"; 
     pnlNameFiles.orientation = "column"; 
     pnlNameFiles.alignChildren = ["left","top"]; 
     pnlNameFiles.spacing = 4; 
     pnlNameFiles.margins = [10,10,10,10]; 
     pnlNameFiles.alignment = ["fill","center"]; 
 
-    var ddNameAs_array = ["Ê¹ÓÃÍ¼²ãÃû³Æ£¨É¾³ıÀ©Õ¹Ãû£©","Ê¹ÓÃÍ¼²ãÃû³Æ£¨±£ÁôÀ©Õ¹Ãû£©","Ê¹ÓÃÍ¼²ãºÍ¸¸×éÃû³Æ","Ê¹ÓÃË÷Òı½µĞò","Ê¹ÓÃË÷ÒıÉıĞò"]; 
+    var ddNameAs_array = ["ä½¿ç”¨å›¾å±‚åç§°ï¼ˆåˆ é™¤æ‰©å±•åï¼‰","ä½¿ç”¨å›¾å±‚åç§°ï¼ˆä¿ç•™æ‰©å±•åï¼‰","ä½¿ç”¨å›¾å±‚å’Œçˆ¶ç»„åç§°","ä½¿ç”¨ç´¢å¼•é™åº","ä½¿ç”¨ç´¢å¼•å‡åº"]; 
     var ddNameAs = pnlNameFiles.add("dropdownlist", undefined, undefined, {name: "ddNameAs", items: ddNameAs_array}); 
     ddNameAs.selection = 0; 
 
@@ -2699,12 +2699,12 @@ function makeMainDialog() {
 
     var cbDelimiter = grpDelimiter.add("checkbox", undefined, undefined, {name: "cbDelimiter"}); 
     //cbDelimiter.helpTip = "Whether to use a custom delimiter between words"; 
-    cbDelimiter.helpTip = "¹È¸è·­Òë£ºÊÇ·ñÔÚµ¥´ÊÖ®¼äÊ¹ÓÃ×Ô¶¨Òå·Ö¸ô·û"; 
-    cbDelimiter.text = "Ê¹ÓÃ×Ô¶¨Òå·Ö¸ô·û"; 
+    cbDelimiter.helpTip = "è°·æ­Œç¿»è¯‘ï¼šæ˜¯å¦åœ¨å•è¯ä¹‹é—´ä½¿ç”¨è‡ªå®šä¹‰åˆ†éš”ç¬¦"; 
+    cbDelimiter.text = "ä½¿ç”¨è‡ªå®šä¹‰åˆ†éš”ç¬¦"; 
 
     var txtDelimiter = grpDelimiter.add('edittext {properties: {name: "txtDelimiter"}}'); 
     //txtDelimiter.helpTip = "The delimiter to use between words"; 
-    txtDelimiter.helpTip = "¹È¸è·­Òë£ºµ¥´ÊÖ®¼äÊ¹ÓÃµÄ·Ö¸ô·û"; 
+    txtDelimiter.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå•è¯ä¹‹é—´ä½¿ç”¨çš„åˆ†éš”ç¬¦"; 
     txtDelimiter.text = "_"; 
     txtDelimiter.preferredSize.width = 22; 
 
@@ -2717,9 +2717,9 @@ function makeMainDialog() {
     grpCasing.margins = 0; 
 
     var lblLetterCasing = grpCasing.add("statictext", undefined, undefined, {name: "lblLetterCasing"}); 
-    lblLetterCasing.text = "×ÖÄ¸´óĞ¡Ğ´"; 
+    lblLetterCasing.text = "å­—æ¯å¤§å°å†™"; 
 	
-    var ddLetterCasing_array = ["±£Áô","Ğ¡Ğ´","´óĞ´"]; 
+    var ddLetterCasing_array = ["ä¿ç•™","å°å†™","å¤§å†™"]; 
     var ddLetterCasing = grpCasing.add("dropdownlist", undefined, undefined, {name: "ddLetterCasing", items: ddLetterCasing_array}); 
     ddLetterCasing.selection = 0; 
 
@@ -2740,11 +2740,11 @@ function makeMainDialog() {
     grpPrefixSuffixLabel.margins = [0,0,0,0]; 
 
     var lblPrefix = grpPrefixSuffixLabel.add("statictext", undefined, undefined, {name: "lblPrefix"}); 
-    lblPrefix.text = "Ìí¼ÓÇ°×º"; 
+    lblPrefix.text = "æ·»åŠ å‰ç¼€"; 
     lblPrefix.alignment = ["left","center"]; 
 
     var lblSuffix = grpPrefixSuffixLabel.add("statictext", undefined, undefined, {name: "lblSuffix"}); 
-    lblSuffix.text = "Ìí¼Óºó×º"; 
+    lblSuffix.text = "æ·»åŠ åç¼€"; 
 
     // GRPPREFIXSUFFIX
     // ===============
@@ -2756,7 +2756,7 @@ function makeMainDialog() {
 
     var txtPrefix = grpPrefixSuffix.add('edittext {properties: {name: "txtPrefix"}}'); 
     //txtPrefix.helpTip = "Prefix will be added before every layer name"; 
-    txtPrefix.helpTip = "¹È¸è·­Òë£ºÃ¿¸öÍ¼²ãÃû³ÆÇ°¶¼»áÌí¼ÓÇ°×º"; 
+    txtPrefix.helpTip = "è°·æ­Œç¿»è¯‘ï¼šæ¯ä¸ªå›¾å±‚åç§°å‰éƒ½ä¼šæ·»åŠ å‰ç¼€"; 
     txtPrefix.preferredSize.width = 100; 
 
     var lblEllipsis = grpPrefixSuffix.add("statictext", undefined, undefined, {name: "lblEllipsis"}); 
@@ -2764,7 +2764,7 @@ function makeMainDialog() {
 
     var txtSuffix = grpPrefixSuffix.add('edittext {properties: {name: "txtSuffix"}}'); 
    // txtSuffix.helpTip = "Suffix will be added after every layer name"; 
-    txtSuffix.helpTip = "¹È¸è·­Òë£ºÃ¿¸öÍ¼²ãÃû³Æºó¶¼»áÌí¼Óºó×º"; 
+    txtSuffix.helpTip = "è°·æ­Œç¿»è¯‘ï¼šæ¯ä¸ªå›¾å±‚åç§°åéƒ½ä¼šæ·»åŠ åç¼€"; 
     txtSuffix.preferredSize.width = 100; 
 
     // GRPCOL2
@@ -2787,8 +2787,8 @@ function makeMainDialog() {
 
     var btnRun = grpActions.add("button", undefined, undefined, {name: "btnRun"}); 
    // btnRun.helpTip = "Runs the script with the selected settings"; 
-    btnRun.helpTip = "¹È¸è·­Òë£ºÊ¹ÓÃÑ¡¶¨µÄÉèÖÃÔËĞĞ½Å±¾"; 
-    btnRun.text = "ÔËĞĞ"; 
+    btnRun.helpTip = "è°·æ­Œç¿»è¯‘ï¼šä½¿ç”¨é€‰å®šçš„è®¾ç½®è¿è¡Œè„šæœ¬"; 
+    btnRun.text = "è¿è¡Œ"; 
 
     // GRPCLOSEBUTTONS
     // ===============
@@ -2800,33 +2800,33 @@ function makeMainDialog() {
 
     var btnCancel = grpCloseButtons.add("button", undefined, undefined, {name: "btnCancel"}); 
     //btnCancel.helpTip = "Closes the dialog and does not save any changes"; 
-    btnCancel.helpTip = "¹È¸è·­Òë£º¹Ø±Õ¶Ô»°¿ò²¢ÇÒ²»±£´æÈÎºÎ¸ü¸Ä"; 
-    btnCancel.text = "È¡Ïû"; 
+    btnCancel.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå…³é—­å¯¹è¯æ¡†å¹¶ä¸”ä¸ä¿å­˜ä»»ä½•æ›´æ”¹"; 
+    btnCancel.text = "å–æ¶ˆ"; 
     btnCancel.preferredSize.width = 111; 
 
     var btnSaveAndCancel = grpCloseButtons.add("button", undefined, undefined, {name: "btnSaveAndCancel"}); 
     //btnSaveAndCancel.helpTip = "Closes the dialog but saves any changes made"; 
-    btnSaveAndCancel.helpTip = "¹È¸è·­Òë£º¹Ø±Õ¶Ô»°¿òµ«±£´æËù×öµÄÈÎºÎ¸ü¸Ä"; 
-    btnSaveAndCancel.text = "±£´æ²¢¹Ø±Õ"; 
+    btnSaveAndCancel.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå…³é—­å¯¹è¯æ¡†ä½†ä¿å­˜æ‰€åšçš„ä»»ä½•æ›´æ”¹"; 
+    btnSaveAndCancel.text = "ä¿å­˜å¹¶å…³é—­"; 
 
     // GRPACTIONS
     // ==========
     var cbOverwriteFiles = grpActions.add("checkbox", undefined, undefined, {name: "cbOverwriteFiles"}); 
     //cbOverwriteFiles.helpTip = "If checked, will overwrite existing files if they have the same name. Otherwise it will make unique copies"; 
-    cbOverwriteFiles.helpTip = "¹È¸è·­Òë£ºÈç¹ûÑ¡ÖĞ£¬Ôò½«¸²¸ÇÍ¬ÃûµÄÏÖÓĞÎÄ¼ş¡£·ñÔò£¬½«´´½¨Î¨Ò»µÄ¸±±¾¡£"; 
-    cbOverwriteFiles.text = "¸²¸ÇÏÖÓĞÎÄ¼ş"; 
+    cbOverwriteFiles.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¦‚æœé€‰ä¸­ï¼Œåˆ™å°†è¦†ç›–åŒåçš„ç°æœ‰æ–‡ä»¶ã€‚å¦åˆ™ï¼Œå°†åˆ›å»ºå”¯ä¸€çš„å‰¯æœ¬ã€‚"; 
+    cbOverwriteFiles.text = "è¦†ç›–ç°æœ‰æ–‡ä»¶"; 
     cbOverwriteFiles.alignment = ["center","top"]; 
 
     var cbSilent = grpActions.add("checkbox", undefined, undefined, {name: "cbSilent"}); 
     //cbSilent.helpTip = "If checked, will run without a progress bar and success confirmation."; 
-    cbSilent.helpTip = "¹È¸è·­Òë£ºÈç¹ûÑ¡ÖĞ£¬ÔËĞĞÊ±½«Ã»ÓĞ½ø¶ÈÌõºÍ³É¹¦È·ÈÏ¡£"; 
-    cbSilent.text = "¾²Ä¬ÔËĞĞ"; 
+    cbSilent.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¦‚æœé€‰ä¸­ï¼Œè¿è¡Œæ—¶å°†æ²¡æœ‰è¿›åº¦æ¡å’ŒæˆåŠŸç¡®è®¤ã€‚"; 
+    cbSilent.text = "é™é»˜è¿è¡Œ"; 
     cbSilent.alignment = ["center","top"]; 
 
     // PNLOUTPUT
     // =========
     var pnlOutput = grpCol2.add("panel", undefined, undefined, {name: "pnlOutput"}); 
-    pnlOutput.text = "Êä³öÑ¡Ïî"; 
+    pnlOutput.text = "è¾“å‡ºé€‰é¡¹"; 
     pnlOutput.orientation = "column"; 
     pnlOutput.alignChildren = ["left","top"]; 
     pnlOutput.spacing = 10; 
@@ -2843,18 +2843,18 @@ function makeMainDialog() {
 
     var cbGroupsAsFolders = grpGroupsAs.add("checkbox", undefined, undefined, {name: "cbGroupsAsFolders"}); 
     //cbGroupsAsFolders.helpTip = "Groups and sub-groups are saved as directories."; 
-    cbGroupsAsFolders.helpTip = "¹È¸è·­Òë£º×éºÍ×Ó×é±£´æÎªÄ¿Â¼¡£"; 
-    cbGroupsAsFolders.text = "×é×÷ÎªÎÄ¼ş¼Ğ"; 
+    cbGroupsAsFolders.helpTip = "è°·æ­Œç¿»è¯‘ï¼šç»„å’Œå­ç»„ä¿å­˜ä¸ºç›®å½•ã€‚"; 
+    cbGroupsAsFolders.text = "ç»„ä½œä¸ºæ–‡ä»¶å¤¹"; 
 
     var cbTopGroupsAsFolders = grpGroupsAs.add("checkbox", undefined, undefined, {name: "cbTopGroupsAsFolders"}); 
     //cbTopGroupsAsFolders.helpTip = "Groups are saved as directories. Layers in nested groups will be saved in their topmost group."; 
-    cbTopGroupsAsFolders.helpTip = "¹È¸è·­Òë£º×éÒÔÄ¿Â¼ĞÎÊ½±£´æ¡£Ç¶Ì××éÖĞµÄÍ¼²ã½«±£´æÔÚÆä×î¶¥²ãµÄ×éÖĞ¡£"; 
-    cbTopGroupsAsFolders.text = "¶¥¼¶×é×÷ÎªÎÄ¼ş¼Ğ"; 
+    cbTopGroupsAsFolders.helpTip = "è°·æ­Œç¿»è¯‘ï¼šç»„ä»¥ç›®å½•å½¢å¼ä¿å­˜ã€‚åµŒå¥—ç»„ä¸­çš„å›¾å±‚å°†ä¿å­˜åœ¨å…¶æœ€é¡¶å±‚çš„ç»„ä¸­ã€‚"; 
+    cbTopGroupsAsFolders.text = "é¡¶çº§ç»„ä½œä¸ºæ–‡ä»¶å¤¹"; 
 
     var cbTopGroupsAsLayers = grpGroupsAs.add("checkbox", undefined, undefined, {name: "cbTopGroupsAsLayers"}); 
     //cbTopGroupsAsLayers.helpTip = "Top level groups will merge all their children into a single layer before export"; 
-    cbTopGroupsAsLayers.helpTip = "¹È¸è·­Òë£º¶¥¼¶×é½«ÔÚµ¼³öÖ®Ç°½«ÆäËùÓĞ×Ó×éºÏ²¢ÎªÒ»¸öÍ¼²ã"; 
-    cbTopGroupsAsLayers.text = "½«×éºÏ²¢ÎªÍ¼²ã"; 
+    cbTopGroupsAsLayers.helpTip = "è°·æ­Œç¿»è¯‘ï¼šé¡¶çº§ç»„å°†åœ¨å¯¼å‡ºä¹‹å‰å°†å…¶æ‰€æœ‰å­ç»„åˆå¹¶ä¸ºä¸€ä¸ªå›¾å±‚"; 
+    cbTopGroupsAsLayers.text = "å°†ç»„åˆå¹¶ä¸ºå›¾å±‚"; 
 
     // PNLOUTPUT
     // =========
@@ -2871,18 +2871,18 @@ function makeMainDialog() {
 
     var cbForeground = grpForegroundBackground.add("checkbox", undefined, undefined, {name: "cbForeground"}); 
    // cbForeground.helpTip = "The top layer will be used as a foreground in every export."; 
-    cbForeground.helpTip = "¹È¸è·­Òë£º¶¥²ã½«ÔÚÃ¿´Îµ¼³öÊ±ÓÃ×÷Ç°¾°¡£"; 
-    cbForeground.text = "¶¥²ã×÷ÎªÇ°¾°"; 
+    cbForeground.helpTip = "è°·æ­Œç¿»è¯‘ï¼šé¡¶å±‚å°†åœ¨æ¯æ¬¡å¯¼å‡ºæ—¶ç”¨ä½œå‰æ™¯ã€‚"; 
+    cbForeground.text = "é¡¶å±‚ä½œä¸ºå‰æ™¯"; 
 
     var cbBackground = grpForegroundBackground.add("checkbox", undefined, undefined, {name: "cbBackground"}); 
     //cbBackground.helpTip = "The bottom layer will be used as a background in every export."; 
-    cbBackground.helpTip = "¹È¸è·­Òë£ºµ×²ã½«ÔÚÃ¿´Îµ¼³öÊ±ÓÃ×÷±³¾°¡£"; 
-    cbBackground.text = "µ×²ã×÷Îª±³¾°"; 
+    cbBackground.helpTip = "è°·æ­Œç¿»è¯‘ï¼šåº•å±‚å°†åœ¨æ¯æ¬¡å¯¼å‡ºæ—¶ç”¨ä½œèƒŒæ™¯ã€‚"; 
+    cbBackground.text = "åº•å±‚ä½œä¸ºèƒŒæ™¯"; 
 
     // PNLMODIFYLAYERS
     // ===============
     var pnlModifyLayers = grpCol2.add("panel", undefined, undefined, {name: "pnlModifyLayers"}); 
-    pnlModifyLayers.text = "ĞŞ¸ÄÍ¼²ã"; 
+    pnlModifyLayers.text = "ä¿®æ”¹å›¾å±‚"; 
     pnlModifyLayers.orientation = "column"; 
     pnlModifyLayers.alignChildren = ["left","top"]; 
     pnlModifyLayers.spacing = 5; 
@@ -2899,10 +2899,10 @@ function makeMainDialog() {
 
     var cbTrim = grpTrim.add("checkbox", undefined, undefined, {name: "cbTrim"}); 
     //cbTrim.helpTip = "Whether to trim before export"; 
-    cbTrim.helpTip = "¹È¸è·­Òë£ºµ¼³öÇ°ÊÇ·ñĞŞ¼ô"; 
-    cbTrim.text = "²ÃÇĞ"; 
+    cbTrim.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¯¼å‡ºå‰æ˜¯å¦ä¿®å‰ª"; 
+    cbTrim.text = "è£åˆ‡"; 
 
-    var ddTrim_array = ["Ã¿Ò»²ã","Ã¿Ò»²ã£¨Ê¹ÓÃ trim()·½·¨£©","ºÏ²¢"]; 
+    var ddTrim_array = ["æ¯ä¸€å±‚","æ¯ä¸€å±‚ï¼ˆä½¿ç”¨ trim()æ–¹æ³•ï¼‰","åˆå¹¶"]; 
     var ddTrim = grpTrim.add("dropdownlist", undefined, undefined, {name: "ddTrim", items: ddTrim_array}); 
     ddTrim.selection = 0; 
 
@@ -2916,8 +2916,8 @@ function makeMainDialog() {
 
     var cbPadding = grpPadding.add("checkbox", undefined, undefined, {name: "cbPadding"}); 
     //cbPadding.helpTip = "Whether to add padding to every layer before export"; 
-    cbPadding.helpTip = "¹È¸è·­Òë£ºµ¼³öÇ°ÊÇ·ñÎªÃ¿¸öÍ¼²ãÌí¼ÓÌî³ä"; 
-    cbPadding.text = "Ìî³ä"; 
+    cbPadding.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¯¼å‡ºå‰æ˜¯å¦ä¸ºæ¯ä¸ªå›¾å±‚æ·»åŠ å¡«å……"; 
+    cbPadding.text = "å¡«å……"; 
 
     // GRPPADDINGLABEL
     // ===============
@@ -2944,8 +2944,8 @@ function makeMainDialog() {
 
     var cbScale = grpScale.add("checkbox", undefined, undefined, {name: "cbScale"}); 
     //cbScale.helpTip = "Whether to scale every layer before export"; 
-    cbScale.helpTip = "¹È¸è·­Òë£ºµ¼³öÇ°ÊÇ·ñËõ·ÅÃ¿Ò»²ã"; 
-    cbScale.text = "Ëõ·Å"; 
+    cbScale.helpTip = "è°·æ­Œç¿»è¯‘ï¼šå¯¼å‡ºå‰æ˜¯å¦ç¼©æ”¾æ¯ä¸€å±‚"; 
+    cbScale.text = "ç¼©æ”¾"; 
 
     // GRPSCALELABEL
     // =============
@@ -2965,7 +2965,7 @@ function makeMainDialog() {
     // PNLEXPORTAS
     // ===========
     var pnlExportAs = dialog.add("panel", undefined, undefined, {name: "pnlExportAs", borderStyle: "none"}); 
-    pnlExportAs.text = "µ¼³öÎª"; 
+    pnlExportAs.text = "å¯¼å‡ºä¸º"; 
     pnlExportAs.orientation = "column"; 
     pnlExportAs.alignChildren = ["center","center"]; 
     pnlExportAs.spacing = 10;
@@ -2998,19 +2998,19 @@ function makeMainDialog() {
     grpPng24Matte.margins = 0; 
 
     var lblPng24Matte = grpPng24Matte.add("statictext", undefined, undefined, {name: "lblPng24Matte"}); 
-    lblPng24Matte.text = "ÃÉ°æ"; 
+    lblPng24Matte.text = "è’™ç‰ˆ"; 
 	
-    var ddPng24Matte_array = ["°×É«","ºÚÉ«","»ÒÉ«","-","±³¾°","Ç°¾°"]; 
+    var ddPng24Matte_array = ["ç™½è‰²","é»‘è‰²","ç°è‰²","-","èƒŒæ™¯","å‰æ™¯"]; 
     var ddPng24Matte = grpPng24Matte.add("dropdownlist", undefined, undefined, {name: "ddPng24Matte", items: ddPng24Matte_array}); 
     ddPng24Matte.selection = 0; 
 
     // TABPNG24
     // ========
     var cbPng24Transparency = tabPng24.add("checkbox", undefined, undefined, {name: "cbPng24Transparency"}); 
-    cbPng24Transparency.text = "±³¾°Í¸Ã÷"; 
+    cbPng24Transparency.text = "èƒŒæ™¯é€æ˜"; 
 
     var cbPng24Interlaced = tabPng24.add("checkbox", undefined, undefined, {name: "cbPng24Interlaced"}); 
-    cbPng24Interlaced.text = "ÖğĞĞÉ¨Ãè"; 
+    cbPng24Interlaced.text = "é€è¡Œæ‰«æ"; 
 
     // TABPNG8
     // =======
@@ -3030,9 +3030,9 @@ function makeMainDialog() {
     grpPng8ColorReduction.margins = 0; 
 
     var lblPng8ColorReduction = grpPng8ColorReduction.add("statictext", undefined, undefined, {name: "lblPng8ColorReduction"}); 
-    lblPng8ColorReduction.text = "É«²Ê»¹Ô­"; 
+    lblPng8ColorReduction.text = "è‰²å½©è¿˜åŸ"; 
 	
-    var ddPng8ColorReduction_array = ["¸ĞÖªPerceptual","Ñ¡ÔñĞÔ Selective","×ÔÊÊÓ¦ Adaptive","ÏŞÖÆĞÔ£¨Web£© Restrictive (Web)","-","ºÚ°× Black  & White","»Ò¶È Grayscale","Æ»¹ûÏµÍ³ Mac OS","Î¢ÈíÏµÍ³ Windows"]; 
+    var ddPng8ColorReduction_array = ["æ„ŸçŸ¥Perceptual","é€‰æ‹©æ€§ Selective","è‡ªé€‚åº” Adaptive","é™åˆ¶æ€§ï¼ˆWebï¼‰ Restrictive (Web)","-","é»‘ç™½ Black  & White","ç°åº¦ Grayscale","è‹¹æœç³»ç»Ÿ Mac OS","å¾®è½¯ç³»ç»Ÿ Windows"]; 
     var ddPng8ColorReduction = grpPng8ColorReduction.add("dropdownlist", undefined, undefined, {name: "ddPng8ColorReduction", items: ddPng8ColorReduction_array}); 
     ddPng8ColorReduction.selection = 0; 
 
@@ -3045,7 +3045,7 @@ function makeMainDialog() {
     grpPng8NumberOfColors.margins = 0; 
 
     var lblNumberOfColors = grpPng8NumberOfColors.add("statictext", undefined, undefined, {name: "lblNumberOfColors"}); 
-    lblNumberOfColors.text = "ÑÕÉ«ÊıÁ¿"; 
+    lblNumberOfColors.text = "é¢œè‰²æ•°é‡"; 
 
     var txtPng8NumberofColors = grpPng8NumberOfColors.add('edittext {properties: {name: "txtPng8NumberofColors"}}'); 
     txtPng8NumberofColors.preferredSize.width = 36; 
@@ -3059,9 +3059,9 @@ function makeMainDialog() {
     grpPng8Dither.margins = 0; 
 
     var lblPng8Dither = grpPng8Dither.add("statictext", undefined, undefined, {name: "lblPng8Dither"}); 
-    lblPng8Dither.text = "¶¶¶¯"; 
+    lblPng8Dither.text = "æŠ–åŠ¨"; 
 
-    var ddPng8Dither_array = ["ÎŞ None","À©É¢ Diffusion","Ä£Ê½ Pattern","ÔëÉù Noise"]; 
+    var ddPng8Dither_array = ["æ—  None","æ‰©æ•£ Diffusion","æ¨¡å¼ Pattern","å™ªå£° Noise"]; 
     var ddPng8Dither = grpPng8Dither.add("dropdownlist", undefined, undefined, {name: "ddPng8Dither", items: ddPng8Dither_array}); 
     ddPng8Dither.selection = 1; 
 
@@ -3092,9 +3092,9 @@ function makeMainDialog() {
     grpPng8Matte.margins = 0; 
 
     var lblPng8Matte = grpPng8Matte.add("statictext", undefined, undefined, {name: "lblPng8Matte"}); 
-    lblPng8Matte.text = "ÃÉ°æ"; 
+    lblPng8Matte.text = "è’™ç‰ˆ"; 
 
-    var ddPng8Matte_array = ["°×É«","ºÚÉ«","»ÒÉ«","-","±³¾°","Ç°¾°"]; 
+    var ddPng8Matte_array = ["ç™½è‰²","é»‘è‰²","ç°è‰²","-","èƒŒæ™¯","å‰æ™¯"]; 
     var ddPng8Matte = grpPng8Matte.add("dropdownlist", undefined, undefined, {name: "ddPng8Matte", items: ddPng8Matte_array}); 
     ddPng8Matte.selection = 0; 
 
@@ -3107,7 +3107,7 @@ function makeMainDialog() {
     grpPng8Transparency.margins = 0; 
 
     var cbPng8Transparency = grpPng8Transparency.add("checkbox", undefined, undefined, {name: "cbPng8Transparency"}); 
-    cbPng8Transparency.text = "±³¾°Í¸Ã÷"; 
+    cbPng8Transparency.text = "èƒŒæ™¯é€æ˜"; 
 
     // GRPPNG8TRANSPARENCYDITHER
     // =========================
@@ -3119,9 +3119,9 @@ function makeMainDialog() {
     grpPng8TransparencyDither.margins = 0; 
 
     var lblPng8TransparencyDither = grpPng8TransparencyDither.add("statictext", undefined, undefined, {name: "lblPng8TransparencyDither"}); 
-    lblPng8TransparencyDither.text = "±³¾°Í¸Ã÷-·ÂÉ«"; 
+    lblPng8TransparencyDither.text = "èƒŒæ™¯é€æ˜-ä»¿è‰²"; 
 
-    var ddPng8TransparencyDither_array = ["ÎŞ None","À©É¢ Diffusion","Ä£Ê½ Pattern","ÔëÉù Noise"]; 
+    var ddPng8TransparencyDither_array = ["æ—  None","æ‰©æ•£ Diffusion","æ¨¡å¼ Pattern","å™ªå£° Noise"]; 
     var ddPng8TransparencyDither = grpPng8TransparencyDither.add("dropdownlist", undefined, undefined, {name: "ddPng8TransparencyDither", items: ddPng8TransparencyDither_array}); 
     ddPng8TransparencyDither.selection = 0; 
 
@@ -3137,7 +3137,7 @@ function makeMainDialog() {
     // TABPNG8
     // =======
     var cbPng8Interlaced = tabPng8.add("checkbox", undefined, undefined, {name: "cbPng8Interlaced"}); 
-    cbPng8Interlaced.text = "ÖğĞĞÉ¨Ãè"; 
+    cbPng8Interlaced.text = "é€è¡Œæ‰«æ"; 
 
     // TABJPG
     // ======
@@ -3157,7 +3157,7 @@ function makeMainDialog() {
     grpJpgQuality.margins = 0; 
 
     var lblQuality = grpJpgQuality.add("statictext", undefined, undefined, {name: "lblQuality"}); 
-    lblQuality.text = "Æ·ÖÊ"; 
+    lblQuality.text = "å“è´¨"; 
 
     var sldrJpgQuality = grpJpgQuality.add("slider", undefined, undefined, undefined, undefined, {name: "sldrJpgQuality"}); 
     sldrJpgQuality.minvalue = 0; 
@@ -3177,22 +3177,22 @@ function makeMainDialog() {
     grpJpgMatte.margins = 0; 
 
     var lblJpgMatte = grpJpgMatte.add("statictext", undefined, undefined, {name: "lblJpgMatte"}); 
-    lblJpgMatte.text = "ÃÉ°æ"; 
+    lblJpgMatte.text = "è’™ç‰ˆ"; 
 
-    var ddJpgMatte_array = ["°×É«","ºÚÉ«","»ÒÉ«","-","±³¾°","Ç°¾°"]; 
+    var ddJpgMatte_array = ["ç™½è‰²","é»‘è‰²","ç°è‰²","-","èƒŒæ™¯","å‰æ™¯"]; 
     var ddJpgMatte = grpJpgMatte.add("dropdownlist", undefined, undefined, {name: "ddJpgMatte", items: ddJpgMatte_array}); 
     ddJpgMatte.selection = 0; 
 
     // TABJPG
     // ======
     var cbJpgIcc = tabJpg.add("checkbox", undefined, undefined, {name: "cbJpgIcc"}); 
-    cbJpgIcc.text = "ICC ÅäÖÃÎÄ¼ş"; 
+    cbJpgIcc.text = "ICC é…ç½®æ–‡ä»¶"; 
 
     var cbJpgOptimized = tabJpg.add("checkbox", undefined, undefined, {name: "cbJpgOptimized"}); 
-    cbJpgOptimized.text = "ÓÅ»¯"; 
+    cbJpgOptimized.text = "ä¼˜åŒ–"; 
 
     var cbJpgProgressive = tabJpg.add("checkbox", undefined, undefined, {name: "cbJpgProgressive"}); 
-    cbJpgProgressive.text = "½¥½øÊ½"; 
+    cbJpgProgressive.text = "æ¸è¿›å¼"; 
 
     // TABTIF
     // ======
@@ -3212,7 +3212,7 @@ function makeMainDialog() {
     grpTifEncoding.margins = 0; 
 
     var lblTifEncoding = grpTifEncoding.add("statictext", undefined, undefined, {name: "lblTifEncoding"}); 
-    lblTifEncoding.text = "Í¼ÏñÑ¹Ëõ"; 
+    lblTifEncoding.text = "å›¾åƒå‹ç¼©"; 
 
     var ddTifEncoding_array = ["None","LZW","ZIP","JPG"]; 
     var ddTifEncoding = grpTifEncoding.add("dropdownlist", undefined, undefined, {name: "ddTifEncoding", items: ddTifEncoding_array}); 
@@ -3227,7 +3227,7 @@ function makeMainDialog() {
     grpTifQuality.margins = 0; 
 
     var lblTifQuality = grpTifQuality.add("statictext", undefined, undefined, {name: "lblTifQuality"}); 
-    lblTifQuality.text = "Æ·ÖÊ"; 
+    lblTifQuality.text = "å“è´¨"; 
 
     var sldrTifQuality = grpTifQuality.add("slider", undefined, undefined, undefined, undefined, {name: "sldrTifQuality"}); 
     sldrTifQuality.minvalue = 0; 
@@ -3241,13 +3241,13 @@ function makeMainDialog() {
     // TABTIF
     // ======
     var cbTifWithAlpha = tabTif.add("checkbox", undefined, undefined, {name: "cbTifWithAlpha"}); 
-    cbTifWithAlpha.text = "Ê¹ÓÃ Alpha Í¨µÀ"; 
+    cbTifWithAlpha.text = "ä½¿ç”¨ Alpha é€šé“"; 
 
     var cbTifIcc = tabTif.add("checkbox", undefined, undefined, {name: "cbTifIcc"}); 
-    cbTifIcc.text = "ICCÅäÖÃÎÄ¼ş"; 
+    cbTifIcc.text = "ICCé…ç½®æ–‡ä»¶"; 
 
     var cbTifTransparency = tabTif.add("checkbox", undefined, undefined, {name: "cbTifTransparency"}); 
-    cbTifTransparency.text = "±³¾°Í¸Ã÷"; 
+    cbTifTransparency.text = "èƒŒæ™¯é€æ˜"; 
 
     // TABPDF
     // ======
@@ -3267,14 +3267,14 @@ function makeMainDialog() {
     grpPdfStandard.margins = 0; 
 
     var lblPdfStandard = grpPdfStandard.add("statictext", undefined, undefined, {name: "lblPdfStandard"}); 
-    lblPdfStandard.text = "±ê×¼"; 
+    lblPdfStandard.text = "æ ‡å‡†"; 
 
-    var ddPdfStandard_array = ["ÎŞ","PDF/X-1a:2001","PDF/X-1a:2003","PDF/X-3:2002","PDF/X-3:2003","PDF/X-4:2010"]; 
+    var ddPdfStandard_array = ["æ— ","PDF/X-1a:2001","PDF/X-1a:2003","PDF/X-3:2002","PDF/X-3:2003","PDF/X-4:2010"]; 
     var ddPdfStandard = grpPdfStandard.add("dropdownlist", undefined, undefined, {name: "ddPdfStandard", items: ddPdfStandard_array}); 
     ddPdfStandard.selection = 0; 
 
     var lblPdfCompatibility = grpPdfStandard.add("statictext", undefined, undefined, {name: "lblPdfCompatibility"}); 
-    lblPdfCompatibility.text = "¼æÈİĞÔ"; 
+    lblPdfCompatibility.text = "å…¼å®¹æ€§"; 
 
     var ddPdfCompatibility_array = ["Acrobat 4 (PDF 1.3)","Acrobat 5 (PDF 1.4)","Acrobat 6 (PDF 1.5)","Acrobat 7 (PDF 1.6)","Acrobat 8 (PDF 1.7)"]; 
     var ddPdfCompatibility = grpPdfStandard.add("dropdownlist", undefined, undefined, {name: "ddPdfCompatibility", items: ddPdfCompatibility_array}); 
@@ -3289,7 +3289,7 @@ function makeMainDialog() {
     grpPdfColorConversion.margins = 0; 
 
     var cbPdfColorConversion = grpPdfColorConversion.add("checkbox", undefined, undefined, {name: "cbPdfColorConversion"}); 
-    cbPdfColorConversion.text = "ÑÕÉ«×ª»»"; 
+    cbPdfColorConversion.text = "é¢œè‰²è½¬æ¢"; 
 
     // GRPPDFDESTINATIONPROFILE
     // ========================
@@ -3300,10 +3300,10 @@ function makeMainDialog() {
     grpPdfDestinationProfile.margins = 0; 
 
     var lblPdfDestinationProfile = grpPdfDestinationProfile.add("statictext", undefined, undefined, {name: "lblPdfDestinationProfile"}); 
-    lblPdfDestinationProfile.text = "Ä¿±ê"; 
+    lblPdfDestinationProfile.text = "ç›®æ ‡"; 
 
    // var ddPdfDestinationProfile_array = ["Japan Color 2001 Coated","Japan Color 2001 Uncoated","Japan Color 2002 Newspaper","Japan Color 2003 Web Coated","Japan Web Coated (Ad)","U.S. Sheetfed Coated v2","U.S. Sheetfed Uncoated v2","U.S. Web Coated (SWOP) v2","U.S. Web Uncoated v2","-","sRGB IEC61966-2.1","Adobe RGB (1998)","Apple RGB","ColorMatch RGBimage P3","ProPhoto RGB","Rec.601 NTSC Gamma 2.4","Rec.601 PAL Gamma 2.4","Rec.709 Gamma 2.4"]; 
-    var ddPdfDestinationProfile_array = ["ÈÕ±¾²ÊÉ« 2001 Í­°æÖ½", "ÈÕ±¾²ÊÉ« 2001 ·ÇÍ­°æÖ½", "ÈÕ±¾²ÊÉ« 2002 ±¨Ö½Ö½", "ÈÕ±¾²ÊÉ« 2003 ¾íÍ²Ö½Í­°æÖ½", "ÈÕ±¾¾íÍ²Ö½Í­°æÖ½£¨¹ã¸æ£©", "ÃÀ¹úµ¥ÕÅÖ½Í­°æÖ½ v2", "ÃÀ¹úµ¥ÕÅÖ½·ÇÍ­°æÖ½ v2", "ÃÀ¹ú¾íÍ²Ö½Í­°æÖ½ (SWOP) v2", "ÃÀ¹ú¾íÍ²Ö½·ÇÍ­°æÖ½ v2", "-", "sRGB IEC61966-2.1", "Adobe RGB (1998)", "Apple RGB", "ColorMatch RGBimage P3", "ProPhoto RGB", "Rec.601 NTSC Ù¤Âê 2.4", "Rec.601 PAL Ù¤Âê 2.4", "Rec.709 Ù¤Âê 2.4"]; 
+    var ddPdfDestinationProfile_array = ["æ—¥æœ¬å½©è‰² 2001 é“œç‰ˆçº¸", "æ—¥æœ¬å½©è‰² 2001 éé“œç‰ˆçº¸", "æ—¥æœ¬å½©è‰² 2002 æŠ¥çº¸çº¸", "æ—¥æœ¬å½©è‰² 2003 å·ç­’çº¸é“œç‰ˆçº¸", "æ—¥æœ¬å·ç­’çº¸é“œç‰ˆçº¸ï¼ˆå¹¿å‘Šï¼‰", "ç¾å›½å•å¼ çº¸é“œç‰ˆçº¸ v2", "ç¾å›½å•å¼ çº¸éé“œç‰ˆçº¸ v2", "ç¾å›½å·ç­’çº¸é“œç‰ˆçº¸ (SWOP) v2", "ç¾å›½å·ç­’çº¸éé“œç‰ˆçº¸ v2", "-", "sRGB IEC61966-2.1", "Adobe RGB (1998)", "Apple RGB", "ColorMatch RGBimage P3", "ProPhoto RGB", "Rec.601 NTSC ä¼½ç› 2.4", "Rec.601 PAL ä¼½ç› 2.4", "Rec.709 ä¼½ç› 2.4"]; 
     var ddPdfDestinationProfile = grpPdfDestinationProfile.add("dropdownlist", undefined, undefined, {name: "ddPdfDestinationProfile", items: ddPdfDestinationProfile_array}); 
     ddPdfDestinationProfile.selection = 0; 
 
@@ -3317,7 +3317,7 @@ function makeMainDialog() {
 
 
    // var ddPdfDownSample_array = ["Do Not Downsample","Average Downsampling To","Subsampling To","Bicubic Downsampling To"]; 
-    var ddPdfDownSample_array = ["²»½øĞĞ½µ²ÉÑù", "ÇøÓòÆ½¾ù·¨£¨Area Averaging£©", "ÖØ²ÉÑùÖÁ", "Ë«Èı´Î²åÖµ£¨Bicubic Resampling£©"]; 
+    var ddPdfDownSample_array = ["ä¸è¿›è¡Œé™é‡‡æ ·", "åŒºåŸŸå¹³å‡æ³•ï¼ˆArea Averagingï¼‰", "é‡é‡‡æ ·è‡³", "åŒä¸‰æ¬¡æ’å€¼ï¼ˆBicubic Resamplingï¼‰"]; 
     var ddPdfDownSample = grpPdfDownSample.add("dropdownlist", undefined, undefined, {name: "ddPdfDownSample", items: ddPdfDownSample_array}); 
     ddPdfDownSample.selection = 3; 
 
@@ -3337,7 +3337,7 @@ function makeMainDialog() {
     lblPdfDownSampleSize.text = "PPI"; 
 
     var lblPdfDownSampleSizeLimit = grpPdfDownSampleSize.add("statictext", undefined, undefined, {name: "lblPdfDownSampleSizeLimit"}); 
-    lblPdfDownSampleSizeLimit.text = "¶ÔÓÚÉÏÃæµÄÍ¼Æ¬"; 
+    lblPdfDownSampleSizeLimit.text = "å¯¹äºä¸Šé¢çš„å›¾ç‰‡"; 
 
     var txtPdfDownSampleSizeLimit = grpPdfDownSampleSize.add('edittext {properties: {name: "txtPdfDownSampleSizeLimit"}}'); 
     txtPdfDownSampleSizeLimit.text = "450"; 
@@ -3355,9 +3355,9 @@ function makeMainDialog() {
     grpPdfEncoding.margins = 0; 
 
     var lblPdfEncoding = grpPdfEncoding.add("statictext", undefined, undefined, {name: "lblPdfEncoding"}); 
-    lblPdfEncoding.text = "Ñ¹Ëõ"; 
+    lblPdfEncoding.text = "å‹ç¼©"; 
 
-    var ddPdfEncoding_array = ["ÎŞ","ZIP","JPEG"]; 
+    var ddPdfEncoding_array = ["æ— ","ZIP","JPEG"]; 
     var ddPdfEncoding = grpPdfEncoding.add("dropdownlist", undefined, undefined, {name: "ddPdfEncoding", items: ddPdfEncoding_array}); 
     ddPdfEncoding.selection = 2; 
 
@@ -3370,7 +3370,7 @@ function makeMainDialog() {
     grpPdfQuality.margins = 0; 
 
     var lblPdfQuality = grpPdfQuality.add("statictext", undefined, undefined, {name: "lblPdfQuality"}); 
-    lblPdfQuality.text = "Æ·ÖÊ"; 
+    lblPdfQuality.text = "å“è´¨"; 
 
     var sldrPdfQuality = grpPdfQuality.add("slider", undefined, undefined, undefined, undefined, {name: "sldrPdfQuality"}); 
     sldrPdfQuality.minvalue = 0; 
@@ -3384,10 +3384,10 @@ function makeMainDialog() {
     // TABPDF
     // ======
     var cbPdfWithAlpha = tabPdf.add("checkbox", undefined, undefined, {name: "cbPdfWithAlpha"}); 
-    cbPdfWithAlpha.text = "Ê¹ÓÃ Alpha Í¨µÀ"; 
+    cbPdfWithAlpha.text = "ä½¿ç”¨ Alpha é€šé“"; 
 
     var cbPdfIcc = tabPdf.add("checkbox", undefined, undefined, {name: "cbPdfIcc"}); 
-    cbPdfIcc.text = "ICCÅäÖÃÎÄ¼ş"; 
+    cbPdfIcc.text = "ICCé…ç½®æ–‡ä»¶"; 
 
     // TABTGA
     // ======
@@ -3407,19 +3407,19 @@ function makeMainDialog() {
     grpTgaDepth.margins = 0; 
 
     var lblTgaDepth = grpTgaDepth.add("statictext", undefined, undefined, {name: "lblTgaDepth"}); 
-    lblTgaDepth.text = "Éî¶È"; 
+    lblTgaDepth.text = "æ·±åº¦"; 
 
-    var ddTgaDepth_array = ["16 Î» bit","24 Î» bit","36 Î» bit"]; 
+    var ddTgaDepth_array = ["16 ä½ bit","24 ä½ bit","36 ä½ bit"]; 
     var ddTgaDepth = grpTgaDepth.add("dropdownlist", undefined, undefined, {name: "ddTgaDepth", items: ddTgaDepth_array}); 
     ddTgaDepth.selection = 0; 
 
     // TABTGA
     // ======
     var cbTgaWithAlpha = tabTga.add("checkbox", undefined, undefined, {name: "cbTgaWithAlpha"}); 
-    cbTgaWithAlpha.text = "Ê¹ÓÃ Alpha Í¨µÀ"; 
+    cbTgaWithAlpha.text = "ä½¿ç”¨ Alpha é€šé“"; 
 
     var cbTgaRleCompression = tabTga.add("checkbox", undefined, undefined, {name: "cbTgaRleCompression"}); 
-    cbTgaRleCompression.text = "RLEÑ¹Ëõ"; 
+    cbTgaRleCompression.text = "RLEå‹ç¼©"; 
 
     // TABBMP
     // ======
@@ -3439,22 +3439,22 @@ function makeMainDialog() {
     grpBmpDepth.margins = 0; 
 
     var lblBmpDepth = grpBmpDepth.add("statictext", undefined, undefined, {name: "lblBmpDepth"}); 
-    lblBmpDepth.text = "Éî¶È"; 
+    lblBmpDepth.text = "æ·±åº¦"; 
 
-    var ddBmpDepth_array = ["24 Î» bit","32 Î» bit","RGB 565 (16 Î» bit)","ARGB 1555 (16 Î» bit)","ARGB 4444 (16 Î» bit)"]; 
+    var ddBmpDepth_array = ["24 ä½ bit","32 ä½ bit","RGB 565 (16 ä½ bit)","ARGB 1555 (16 ä½ bit)","ARGB 4444 (16 ä½ bit)"]; 
     var ddBmpDepth = grpBmpDepth.add("dropdownlist", undefined, undefined, {name: "ddBmpDepth", items: ddBmpDepth_array}); 
     ddBmpDepth.selection = 0; 
 
     // TABBMP
     // ======
     var cbBmpWithAlpha = tabBmp.add("checkbox", undefined, undefined, {name: "cbBmpWithAlpha"}); 
-    cbBmpWithAlpha.text = "Ê¹ÓÃ Alpha Í¨µÀ"; 
+    cbBmpWithAlpha.text = "ä½¿ç”¨ Alpha é€šé“"; 
 
     var cbBmpRleCompression = tabBmp.add("checkbox", undefined, undefined, {name: "cbBmpRleCompression"}); 
-    cbBmpRleCompression.text = "RLEÑ¹Ëõ"; 
+    cbBmpRleCompression.text = "RLEå‹ç¼©"; 
 
     var cbBmpFlipRowOrder = tabBmp.add("checkbox", undefined, undefined, {name: "cbBmpFlipRowOrder"}); 
-    cbBmpFlipRowOrder.text = "·­×ªĞĞË³Ğò"; 
+    cbBmpFlipRowOrder.text = "ç¿»è½¬è¡Œé¡ºåº"; 
 
     // PSD
     // ===
@@ -3473,7 +3473,7 @@ function makeMainDialog() {
     // ======
     var lblMetadata = dialog.add("statictext", undefined, undefined, {name: "lblMetadata"}); 
     //lblMetadata.text = "This document contains {0} layer(s), {1} of them visible, {2} selected"; 
-    lblMetadata.text = "´ËÎÄµµ°üº¬ {0} ¸öÍ¼²ã£¬ÆäÖĞ {1} ¸ö¿É¼û£¬{2} ¸öÒÑÑ¡Ôñ"; 
+    lblMetadata.text = "æ­¤æ–‡æ¡£åŒ…å« {0} ä¸ªå›¾å±‚ï¼Œå…¶ä¸­ {1} ä¸ªå¯è§ï¼Œ{2} ä¸ªå·²é€‰æ‹©"; 
     lblMetadata.justify = "center"; 
 
     var lblContact = dialog.add("group"); 
@@ -3481,11 +3481,11 @@ function makeMainDialog() {
     lblContact.alignChildren = ["center","center"]; 
     lblContact.spacing = 0; 
 
-    lblContact.add("statictext", undefined, "Òª»ñÈ¡×îĞÂ°æ±¾»òÁôÏÂ·´À¡£¬Çë·ÃÎÊ£º", {name: "lblContact"}); 
+    lblContact.add("statictext", undefined, "è¦è·å–æœ€æ–°ç‰ˆæœ¬æˆ–ç•™ä¸‹åé¦ˆï¼Œè¯·è®¿é—®ï¼š", {name: "lblContact"}); 
     lblContact.add("statictext", undefined, "https://github.com/antipalindrome/Photoshop-Export-Layers-to-Files-Fast", {name: "lblContact"}); 
-    lblContact.add("statictext", undefined, "£¨¿ÉGithubËÑË÷¡°Export-Layers-to-Files-Fast¡±£©", {name: "lblContact"}); 
-    lblContact.add("statictext", undefined, "¸ĞĞ»Ò»ÖÚÔ­×÷Õß£¨Github£©£ºHannaµÈÈË", {name: "lblContact"}); 
-    lblContact.add("statictext", undefined, "ÎÒÊÇTKCB-Gm£¬Îª´Ëjsx½øĞĞÁËÖĞÎÄµÄ·­Òë£¬ÈçÓĞ²»¶Ô¾´ÇëÖ¸Õı£¬»úÆ÷·­Òë+²¿·ÖÈË¹¤Ğ£¶Ô", {name: "lblContact"}); 
+    lblContact.add("statictext", undefined, "ï¼ˆå¯Githubæœç´¢â€œExport-Layers-to-Files-Fastâ€ï¼‰", {name: "lblContact"}); 
+    lblContact.add("statictext", undefined, "æ„Ÿè°¢ä¸€ä¼—åŸä½œè€…ï¼ˆGithubï¼‰ï¼šHannaç­‰äºº", {name: "lblContact"}); 
+    lblContact.add("statictext", undefined, "æˆ‘æ˜¯TKCB-Gmï¼Œä¸ºæ­¤jsxè¿›è¡Œäº†ä¸­æ–‡çš„ç¿»è¯‘ï¼Œå¦‚æœ‰ä¸å¯¹æ•¬è¯·æŒ‡æ­£ï¼Œæœºå™¨ç¿»è¯‘+éƒ¨åˆ†äººå·¥æ ¡å¯¹", {name: "lblContact"}); 
 
   return dialog;
 }
